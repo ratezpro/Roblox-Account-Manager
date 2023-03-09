@@ -591,7 +591,7 @@ namespace RBX_Alt_Manager
 
             RestRequest request = new RestRequest("v2/assets/" + PlaceId + "/details", Method.GET);
             request.AddHeader("Accept", "application/json");
-            IRestResponse response = await AccountManager.APIClient.ExecuteAsync(request);
+            IRestResponse response = await AccountManager.EconClient.ExecuteAsync(request);
 
             Logger.Info($"MarketResponse for {PlaceId}: [{response.StatusCode}] {response.Content}");
 
