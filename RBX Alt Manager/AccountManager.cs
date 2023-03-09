@@ -1302,15 +1302,15 @@ namespace RBX_Alt_Manager
 
         private void PlaceTimer_Tick(object sender, EventArgs e)
         {
-            if (APIClient == null) return;
+            if (EconClient == null) return;
 
             PlaceTimer.Stop();
 
             Task.Run(() =>
             {
-                RestRequest request = new RestRequest("Marketplace/ProductInfo?assetId=" + PlaceID.Text, Method.GET);
+                RestRequest request = new RestRequest("v2/assets/" + PlaceID.Text+ "/details", Method.GET);
                 request.AddHeader("Accept", "application/json");
-                IRestResponse response = APIClient.Execute(request);
+                IRestResponse response = EconClient.Execute(request);
 
                 if (response.IsSuccessful && response.StatusCode == HttpStatusCode.OK && (response.Content.StartsWith("{") && response.Content.EndsWith("}")))
                 {
