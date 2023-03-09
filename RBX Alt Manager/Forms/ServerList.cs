@@ -589,7 +589,7 @@ namespace RBX_Alt_Manager
             if (!string.IsNullOrEmpty(AccountManager.CurrentJobId) && AccountManager.CurrentJobId.Contains("privateServerLinkCode") && Regex.IsMatch(AccountManager.CurrentJobId, @"\/games\/(\d+)\/"))
                 PlaceId = Regex.Match(AccountManager.CurrentJobId, @"\/games\/(\d+)\/").Groups[1].Value;
 
-            RestRequest request = new RestRequest("Marketplace/ProductInfo?assetId=" + PlaceId, Method.GET);
+            RestRequest request = new RestRequest("v2/assets/" + PlaceId + "/details", Method.GET);
             request.AddHeader("Accept", "application/json");
             IRestResponse response = await AccountManager.APIClient.ExecuteAsync(request);
 
